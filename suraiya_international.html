@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suraiya International | Premium Sportswear & Bulk Clothing</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            900: '#0B192C',
+                            800: '#1E3E62',
+                            700: '#000000',
+                            DEFAULT: '#0B192C'
+                        },
+                        gold: {
+                            50: '#FDFBF7',
+                            100: '#FCF7E8',
+                            400: '#E6C687',
+                            500: '#D4AF37', // Premium Metallic Gold
+                            600: '#B08D26',
+                            700: '#8C6C1B'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0B192C;
+            color: #FDFBF7;
+            scroll-behavior: smooth;
+        }
+        .font-display {
+            font-family: 'Montserrat', sans-serif;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B192C;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D4AF37;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #B08D26;
+        }
+        /* Glow Effects */
+        .gold-glow {
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+        .gold-border-glow:focus {
+            border-color: #D4AF37;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+            outline: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col overflow-x-hidden">
+
+    <!-- Top Bar -->
+    <div class="bg-gold-500 text-navy-900 text-xs font-semibold py-2 px-4 text-center tracking-wider">
+        🔥 SPECIAL BULK DISCOUNTS: GET UP TO 35% OFF ON WHOLESALE ORDERS | FREE GLOBAL SHIPPING ON BULK OVER $1000
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="bg-navy-900/95 sticky top-0 z-40 border-b border-gold-500/20 backdrop-blur-md transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex flex-col items-start select-none">
+                <span class="font-display text-2xl font-extrabold tracking-wider text-gold-500 leading-none">SURAIYA</span>
+                <span class="text-[9px] font-bold tracking-[0.38em] text-white">INTERNATIONAL</span>
+                <span class="text-[7px] text-gold-400 font-semibold uppercase tracking-[0.1em]">Sportswear Elite</span>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+                <a href="#home" class="text-white hover:text-gold-500 transition-colors">Home</a>
+                <a href="#retail-shop" class="text-white hover:text-gold-500 transition-colors">Retail Shop</a>
+                <a href="#bulk-section" class="text-gold-400 hover:text-gold-500 font-semibold flex items-center gap-1 transition-colors">
+                    <i class="fa-solid fa-boxes-packing"></i> Bulk / Wholesale
+                </a>
+                <a href="#about-us" class="text-white hover:text-gold-500 transition-colors">Our Legacy</a>
+                <a href="#contact-us" class="text-white hover:text-gold-500 transition-colors">Contact</a>
+            </nav>
+
+            <!-- Action Controls -->
+            <div class="flex items-center space-x-4">
+                <!-- Search bar (Hidden on small mobile) -->
+                <div class="relative hidden sm:block">
+                    <input type="text" id="product-search" placeholder="Search products..." 
+                           class="bg-navy-800/80 text-white placeholder-gray-400 text-xs px-4 py-2 pr-8 rounded-full border border-gold-500/20 focus:border-gold-500/70 focus:outline-none transition-all w-48 focus:w-60">
+                    <i class="fa-solid fa-magnifying-glass absolute right-3 top-2.5 text-gray-400 text-xs"></i>
+                </div>
+
+                <!-- Currency Selector -->
+                <select id="currency-select" onchange="changeCurrency()" class="bg-navy-800 text-gold-400 border border-gold-500/30 rounded px-2 py-1 text-xs font-bold focus:outline-none focus:border-gold-500">
+                    <option value="PKR">PKR (₨)</option>
+                    <option value="USD">USD ($)</option>
+                </select>
+
+                <!-- Shopping Cart Icon -->
+                <button onclick="toggleCartDrawer()" class="relative p-2.5 text-gold-500 hover:text-gold-400 transition-transform hover:scale-110 flex items-center focus:outline-none">
+                    <i class="fa-solid fa-bag-shopping text-xl"></i>
+                    <span id="cart-count-badge" class="absolute -top-1 -right-1 bg-red-600 text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center border-2 border-navy-900 hidden">0</span>
+                </button>
+
+                <!-- Mobile Menu Toggle Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-white hover:text-gold-500 focus:outline-none">
+                    <i id="mobile-menu-icon" class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Side Navigation Overlay -->
+        <div id="mobile-menu" class="hidden md:hidden bg-navy-950 border-t border-gold-500/10 px-4 py-4 space-y-3 shadow-2xl transition-all duration-300">
+            <a href="#home" onclick="toggleMobileMenu()" class="block py-2 text-white hover:text-gold-500 border-b border-navy-800">Home</a>
+            <a href="#retail-shop" onclick="toggleMobileMenu()" class="block py-2 text-white hover:text-gold-500 border-b border-navy-800">Retail Shop</a>
+            <a href="#bulk-section" onclick="toggleMobileMenu()" class="block py-2 text-gold-400 font-bold hover:text-gold-500 border-b border-navy-800 flex items-center gap-2">
+                <i class="fa-solid fa-boxes-packing"></i> Bulk/Wholesale Ordering
+            </a>
+            <a href="#about-us" onclick="toggleMobileMenu()" class="block py-2 text-white hover:text-gold-500 border-b border-navy-800">Our Legacy</a>
+            <a href="#contact-us" onclick="toggleMobileMenu()" class="block py-2 text-white hover:text-gold-500">Contact Us</a>
+            <!-- Mobile Search Bar -->
+            <div class="relative pt-2">
+                <input type="text" id="mobile-product-search" placeholder="Search apparel..." 
+                       class="w-full bg-navy-800 text-white placeholder-gray-400 text-xs px-4 py-3 pr-10 rounded-lg border border-gold-500/20 focus:border-gold-500 focus:outline-none">
+                <i class="fa-solid fa-magnifying-glass absolute right-3 top-5.5 text-gray-400"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner Section -->
+    <section id="home" class="relative min-h-[80vh] flex items-center justify-center bg-cover bg-center overflow-hidden" style="background-image: linear-gradient(to right, rgba(11, 25, 44, 0.95), rgba(11, 25, 44, 0.75)), url('https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=2070&auto=format&fit=crop');">
+        <!-- Gold grid/accent overlay lines -->
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(212,175,55,0.1)_0%,transparent_70%)] pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-navy-900 to-transparent"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10 text-center">
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs sm:text-sm font-semibold mb-6 tracking-wider uppercase mx-auto animate-pulse">
+                <i class="fa-solid fa-trophy"></i> Premium Athletic Apparel
+            </div>
+            
+            <!-- Headline -->
+            <h1 class="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight leading-tight mb-6">
+                Where Elite Performance <br class="hidden sm:inline">
+                Meets <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 font-display">Gold Luxury</span>
+            </h1>
+
+            <p class="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto mb-10 leading-relaxed font-light">
+                Tailoring high-performance, premium grade activewear for athletes worldwide. Whether buying single retail gear or bulk private labels for teams and corporations—we deliver absolute perfection.
+            </p>
+
+            <!-- Buttons -->
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#retail-shop" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-gold-600 to-gold-500 hover:from-gold-500 hover:to-gold-400 text-navy-900 font-bold text-sm uppercase tracking-wider rounded-lg shadow-lg hover:shadow-gold-500/25 transition-all transform hover:-translate-y-1 duration-200 text-center">
+                    <i class="fa-solid fa-bag-shopping mr-2"></i> Shop Retail (1-by-1)
+                </a>
+                <a href="#bulk-section" class="w-full sm:w-auto px-8 py-4 bg-transparent hover:bg-gold-500/10 text-gold-400 hover:text-gold-500 border-2 border-gold-500/40 hover:border-gold-500 font-bold text-sm uppercase tracking-wider rounded-lg transition-all transform hover:-translate-y-1 duration-200 text-center">
+                    <i class="fa-solid fa-boxes-packing mr-2"></i> Bulk Wholesale Quote
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Features Grid -->
+    <section class="py-12 bg-navy-950 border-b border-gold-500/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Card 1 -->
+                <div class="flex items-start gap-4 p-5 bg-navy-900/60 rounded-xl border border-gold-500/10 hover:border-gold-500/30 transition-all duration-300">
+                    <div class="text-gold-500 text-3xl"><i class="fa-solid fa-shirt"></i></div>
+                    <div>
+                        <h3 class="text-white font-bold text-base mb-1">Premium Quality</h3>
+                        <p class="text-gray-400 text-xs">Engineered dry-fit, highly breathable anti-microbial premium fabrics.</p>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="flex items-start gap-4 p-5 bg-navy-900/60 rounded-xl border border-gold-500/10 hover:border-gold-500/30 transition-all duration-300">
+                    <div class="text-gold-500 text-3xl"><i class="fa-solid fa-percent"></i></div>
+                    <div>
+                        <h3 class="text-white font-bold text-base mb-1">Flexible Bulk Discount</h3>
+                        <p class="text-gray-400 text-xs">Enjoy tier-based massive price drops on wholesale larger quantities.</p>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="flex items-start gap-4 p-5 bg-navy-900/60 rounded-xl border border-gold-500/10 hover:border-gold-500/30 transition-all duration-300">
+                    <div class="text-gold-500 text-3xl"><i class="fa-solid fa-pen-ruler"></i></div>
+                    <div>
+                        <h3 class="text-white font-bold text-base mb-1">Custom Branding</h3>
+                        <p class="text-gray-400 text-xs">Add your sports club, brand or gym logo with custom colors & patterns.</p>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="flex items-start gap-4 p-5 bg-navy-900/60 rounded-xl border border-gold-500/10 hover:border-gold-500/30 transition-all duration-300">
+                    <div class="text-gold-500 text-3xl"><i class="fa-solid fa-truck-fast"></i></div>
+                    <div>
+                        <h3 class="text-white font-bold text-base mb-1">Worldwide Shipping</h3>
+                        <p class="text-gray-400 text-xs">Super fast door-to-door courier service across Pakistan and worldwide.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Retail Product Catalog -->
+    <section id="retail-shop" class="py-20 bg-navy-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <!-- Section Title -->
+                    <h2 class="font-display text-xs font-bold tracking-[0.2em] text-gold-500 uppercase mb-3">Shop Retail Collection</h2>
+                    <h1 class="font-display text-3xl sm:text-4xl font-extrabold text-white">Featured Sports Apparel</h1>
+                    <p class="text-gray-400 text-sm mt-2 max-w-xl">Order single articles with customized sizing. Choose standard delivery, add to cart, and checkout instantly.</p>
+                </div>
+                
+                <!-- Category Tabs -->
+                <div class="flex items-center gap-2 mt-6 md:mt-0 overflow-x-auto pb-2 scrollbar-none">
+                    <button onclick="filterCategory('All')" class="category-tab active px-5 py-2 text-xs font-semibold tracking-wider rounded-full bg-gold-500 text-navy-900 transition-all">All Gears</button>
+                    <button onclick="filterCategory('Activewear')" class="category-tab px-5 py-2 text-xs font-semibold tracking-wider rounded-full bg-navy-800 text-gray-300 hover:text-white transition-all">Activewear</button>
+                    <button onclick="filterCategory('Compression')" class="category-tab px-5 py-2 text-xs font-semibold tracking-wider rounded-full bg-navy-800 text-gray-300 hover:text-white transition-all">Compression</button>
+                    <button onclick="filterCategory('Outerwear')" class="category-tab px-5 py-2 text-xs font-semibold tracking-wider rounded-full bg-navy-800 text-gray-300 hover:text-white transition-all">Outerwear</button>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Products will be generated programmatically by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Wholesale / Bulk Order Custom Section -->
+    <section id="bulk-section" class="py-20 bg-gradient-to-b from-navy-950 to-navy-900 border-t border-b border-gold-500/20 relative">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(212,175,55,0.05)_0%,transparent_60%)] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="font-display text-xs font-bold tracking-[0.2em] text-gold-500 uppercase">Save Big with Custom Wholesale</span>
+                <h2 class="font-display text-3xl sm:text-5xl font-extrabold text-white mt-3">Bulk Inquiry & Custom Manufacturing</h2>
+                <p class="text-gray-300 text-sm sm:text-base mt-4">
+                    Hum retail brands, sports clubs, corporate events, and fitness gym chains ke liye bespoke quality caps, t-shirts, tracksuits aur custom sportswear design aur manufacture karte hain. 
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                
+                <!-- Left: Bulk Tier Benefits and Dynamic Calculator -->
+                <div class="lg:col-span-7 bg-navy-900/80 rounded-2xl border border-gold-500/20 p-6 sm:p-8 gold-glow">
+                    <h3 class="font-display text-xl font-bold text-gold-500 mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-calculator"></i> Real-Time Bulk Quote Calculator
+                    </h3>
+                    <p class="text-gray-400 text-xs mb-6">Apne products aur matlooba quantity select karein taake aapko instant pricing and estimated wholesale discount mil sakey.</p>
+
+                    <div class="space-y-6">
+                        <!-- Step 1: Select Product -->
+                        <div>
+                            <label class="block text-xs font-bold text-gray-300 uppercase mb-2">1. Select Apparel Item</label>
+                            <select id="bulk-calc-product" onchange="calculateBulkQuote()" class="w-full bg-navy-950 text-white border border-gold-500/20 rounded-lg p-3 text-sm focus:border-gold-500 focus:outline-none">
+                                <option value="tracksuit">Suraiya Signature Premium Tracksuit (Retail Base: ₨ 22,000 / $79.99)</option>
+                                <option value="tee">Pro-Breathe Athletic Tee (Retail Base: ₨ 8,000 / $29.99)</option>
+                                <option value="compression">Gold-Line Compression Tights (Retail Base: ₨ 11,000 / $39.99)</option>
+                                <option value="hoodie">Elite Training Thermal Hoodie (Retail Base: ₨ 16,500 / $59.99)</option>
+                                <option value="shorts">Aero-Dry Lightweight Shorts (Retail Base: ₨ 7,000 / $24.99)</option>
+                                <option value="windbreaker">Suraiya Storm Windbreaker (Retail Base: ₨ 25,000 / $89.99)</option>
+                            </select>
+                        </div>
+
+                        <!-- Step 2: Custom Logo Printing Option -->
+                        <div>
+                            <label class="block text-xs font-bold text-gray-300 uppercase mb-2">2. Customization & Branding Logo</label>
+                            <div class="grid grid-cols-2 gap-4">
+                                <label class="flex items-center gap-3 p-3 bg-navy-950 rounded-lg border border-gold-500/15 cursor-pointer hover:border-gold-500/50 transition-all">
+                                    <input type="radio" name="bulk-logo" value="no" checked onchange="calculateBulkQuote()" class="text-gold-500 focus:ring-0">
+                                    <span class="text-xs text-white">No Custom Logo</span>
+                                </label>
+                                <label class="flex items-center gap-3 p-3 bg-navy-950 rounded-lg border border-gold-500/15 cursor-pointer hover:border-gold-500/50 transition-all">
+                                    <input type="radio" name="bulk-logo" value="yes" onchange="calculateBulkQuote()" class="text-gold-500 focus:ring-0">
+                                    <span class="text-xs text-white">Yes, Print Custom Logo (+5% cost)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Enter Quantity Slider/Input -->
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="text-xs font-bold text-gray-300 uppercase">3. Total Quantity (Units)</label>
+                                <span id="bulk-quantity-display" class="text-sm font-bold text-gold-500 bg-gold-500/10 px-3 py-1 rounded">50 Pcs</span>
+                            </div>
+                            <input type="range" id="bulk-calc-qty" min="20" max="1000" value="50" step="10" oninput="updateBulkQtyDisplay(this.value)" class="w-full h-2 bg-navy-950 rounded-lg appearance-none cursor-pointer accent-gold-500">
+                            <div class="flex justify-between text-[10px] text-gray-500 mt-2">
+                                <span>20 Pcs (Min bulk)</span>
+                                <span>250 Pcs</span>
+                                <span>500 Pcs</span>
+                                <span>1000 Pcs+</span>
+                            </div>
+                        </div>
+
+                        <!-- Display Results -->
+                        <div class="bg-navy-950 rounded-xl p-5 border border-gold-500/20">
+                            <h4 class="text-xs font-semibold uppercase text-gray-400 mb-3 tracking-wider">Estimated Bulk Pricing Details</h4>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mb-4">
+                                <div class="border-r border-navy-800">
+                                    <span class="block text-[10px] text-gray-500 uppercase">Retail Price</span>
+                                    <span id="calc-retail-price" class="text-sm font-bold text-gray-400 line-through">₨ 1,100,000</span>
+                                </div>
+                                <div class="border-r border-navy-800">
+                                    <span class="block text-[10px] text-gray-500 uppercase">Bulk Discount %</span>
+                                    <span id="calc-discount-badge" class="text-sm font-extrabold text-green-500">15% OFF</span>
+                                </div>
+                                <div class="border-r border-navy-800">
+                                    <span class="block text-[10px] text-gray-500 uppercase">Price per Item</span>
+                                    <span id="calc-per-item" class="text-sm font-bold text-gold-400">₨ 18,700</span>
+                                </div>
+                                <div>
+                                    <span class="block text-[10px] text-gray-500 uppercase">Customization</span>
+                                    <span id="calc-logo-cost" class="text-sm font-bold text-gray-300">Included</span>
+                                </div>
+                            </div>
+                            <!-- Grand Total Section -->
+                            <div class="border-t border-navy-800 pt-4 flex flex-col sm:flex-row justify-between items-center">
+                                <div>
+                                    <span class="text-xs text-gray-400">Estimated Total Wholesale Cost:</span>
+                                    <div id="calc-grand-total" class="font-display text-2xl sm:text-3xl font-extrabold text-gold-500">₨ 935,000</div>
+                                </div>
+                                <button onclick="applyBulkCalcToForm()" class="mt-4 sm:mt-0 px-6 py-3 bg-gold-500 hover:bg-gold-600 text-navy-900 font-bold rounded-lg text-xs uppercase tracking-wider transition-all shadow-md">
+                                    Use This Configuration
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: High Conversion Custom Inquiry Submission Form -->
+                <div class="lg:col-span-5 bg-navy-950/80 rounded-2xl border border-gold-500/10 p-6 sm:p-8">
+                    <h3 class="font-display text-xl font-bold text-white mb-2">Submit Bulk Inquiry</h3>
+                    <p class="text-gray-400 text-xs mb-6">Our corporate team will reach out within 2 hours with an official quote invoice & physical catalog.</p>
+
+                    <form id="bulk-inquiry-form" onsubmit="handleBulkFormSubmit(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-300 mb-1">Company / Team Name *</label>
+                            <input type="text" id="bulk-company" required placeholder="e.g., Lahore Hawks Club" 
+                                   class="w-full bg-navy-900 border border-gold-500/20 rounded-lg p-3 text-xs text-white placeholder-gray-500 focus:border-gold-500 focus:outline-none">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-1">Contact Name *</label>
+                                <input type="text" id="bulk-name" required placeholder="Full Name" 
+                                       class="w-full bg-navy-900 border border-gold-500/20 rounded-lg p-3 text-xs text-white placeholder-gray-500 focus:border-gold-500 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-1">WhatsApp / Phone *</label>
+                                <input type="tel" id="bulk-phone" required placeholder="+92 3XX XXXXXXX" 
+                                       class="w-full bg-navy-900 border border-gold-500/20 rounded-lg p-3 text-xs text-white placeholder-gray-500 focus:border-gold-500 focus:outline-none">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-300 mb-1">Email Address *</label>
+                            <input type="email" id="bulk-email" required placeholder="name@domain.com" 
+                                   class="w-full bg-navy-900 border border-gold-500/20 rounded-lg p-3 text-xs text-white placeholder-gray-500 focus:border-gold-500 focus:outline-none">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-1">Target Product</label>
+                                <input type="text" id="bulk-target-product" readonly class="w-full bg-navy-800/80 border border-gold-500/20 rounded-lg p-3 text-xs text-gold-400 font-semibold focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-1">Required Quantity</label>
+                                <input type="number" id="bulk-target-qty" min="20" required class="w-full bg-navy-900 border border-gold-500/20 rounded-lg p-3 text-xs text-white focus:border-gold-500 focus:outline-none">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-300 mb-1">Specific Requirements / Colors / Printing Instructions</label>
+                            <textarea id="bulk-notes" rows="3" placeholder="Sizing distributions, customized logos, exact colors fabric preferences, etc..." 
+                                      class="w-full bg-navy-900 border border-gold-500/20 rounded-lg p-3 text-xs text-white placeholder-gray-500 focus:border-gold-500 focus:outline-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-4 bg-gradient-to-r from-gold-600 to-gold-500 hover:from-gold-500 hover:to-gold-400 text-navy-900 font-extrabold text-sm uppercase tracking-widest rounded-lg transition-all shadow-md transform active:scale-95">
+                            <i class="fa-solid fa-paper-plane mr-2"></i> Submit Inquiry Order
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STEAMING_CHUNK: Designing the Cart and Checkout Drawer Modals -->
+    <!-- Brand Legacy / About Us section -->
+    <section id="about-us" class="py-20 bg-navy-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-5 relative">
+                    <div class="absolute -top-4 -left-4 w-24 h-24 bg-gold-500/10 rounded-full blur-2xl"></div>
+                    <img src="https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=2070&auto=format&fit=crop" 
+                         alt="Production Unit" 
+                         onerror="this.src='https://placehold.co/600x400/0B192C/D4AF37?text=Production+Legacy'" 
+                         class="rounded-xl border-2 border-gold-500/30 object-cover w-full h-80 sm:h-96 shadow-xl relative z-10">
+                    <div class="absolute -bottom-4 -right-4 w-full h-full border border-gold-500/30 rounded-xl z-0 pointer-events-none"></div>
+                </div>
+                <div class="lg:col-span-7 space-y-6">
+                    <span class="font-display text-xs font-bold tracking-[0.2em] text-gold-500 uppercase">Legacy of Suraiya International</span>
+                    <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-white">Export Quality Activewear, Redefined</h2>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Suraiya International was established with a clear philosophy: to deliver global sports apparel performance benchmarks with Pakistani textile craftsmanship heritage. Over the years, we have grown from a custom tailor for sports clubs into a multi-national wholesale and retail exporter.
+                    </p>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Hum design, development, high-end sublimation printing, custom fabric dyeing aur extreme stitching durability par complete quality assurance ka dawa kartay hain. Har retail ya bulk article, strict international athletic testing criteria se guzar kar packing me jata hai.
+                    </p>
+                    <div class="grid grid-cols-3 gap-6 pt-4 text-center sm:text-left">
+                        <div class="border-l-2 border-gold-500 pl-4">
+                            <span class="block font-display text-2xl sm:text-3xl font-bold text-white">100K+</span>
+                            <span class="text-[10px] text-gray-400 uppercase font-semibold">Articles Delivered</span>
+                        </div>
+                        <div class="border-l-2 border-gold-500 pl-4">
+                            <span class="block font-display text-2xl sm:text-3xl font-bold text-white">50+</span>
+                            <span class="text-[10px] text-gray-400 uppercase font-semibold">Sports Clubs Supplied</span>
+                        </div>
+                        <div class="border-l-2 border-gold-500 pl-4">
+                            <span class="block font-display text-2xl sm:text-3xl font-bold text-white">24/7</span>
+                            <span class="text-[10px] text-gray-400 uppercase font-semibold">Global Customer Care</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart Sidebar Drawer -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden" role="dialog" aria-modal="true">
+        <div class="absolute inset-0 overflow-hidden">
+            <!-- Background overlay -->
+            <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="toggleCartDrawer()"></div>
+            
+            <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+                <div class="pointer-events-auto w-screen max-w-md transform transition-all duration-300 ease-in-out">
+                    <div class="flex h-full flex-col bg-navy-950 border-l border-gold-500/20 shadow-2xl">
+                        <!-- Drawer Header -->
+                        <div class="px-6 py-5 border-b border-gold-500/10 flex items-center justify-between">
+                            <h2 class="font-display text-lg font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-basket-shopping text-gold-500"></i> Your Shopping Bag
+                            </h2>
+                            <button onclick="toggleCartDrawer()" class="text-gray-400 hover:text-gold-500 focus:outline-none p-1">
+                                <i class="fa-solid fa-xmark text-xl"></i>
+                            </button>
+                        </div>
+
+                        <!-- Drawer Body -->
+                        <div id="cart-items-container" class="flex-1 overflow-y-auto px-6 py-4 space-y-4">
+                            <!-- Empty State -->
+                            <div id="empty-cart-state" class="text-center py-20">
+                                <i class="fa-solid fa-cart-shopping text-5xl text-gold-500/20 mb-4 block"></i>
+                                <p class="text-gray-400 text-sm font-semibold">Your cart is currently empty</p>
+                                <p class="text-gray-500 text-xs mt-1">Explore our retail catalog to add premium sportswear.</p>
+                                <button onclick="toggleCartDrawer(); window.location.href='#retail-shop';" class="mt-6 px-5 py-2.5 bg-gold-500 text-navy-900 font-bold text-xs uppercase tracking-wide rounded-md hover:bg-gold-400 transition-colors">Start Shopping</button>
+                            </div>
+
+                            <!-- Cart Items dynamically populated -->
+                        </div>
+
+                        <!-- Drawer Footer -->
+                        <div id="cart-footer" class="border-t border-gold-500/10 px-6 py-5 space-y-4 bg-navy-900 hidden">
+                            <div class="flex justify-between text-base font-medium text-white">
+                                <p>Subtotal Amount:</p>
+                                <p id="cart-subtotal" class="font-bold text-gold-500">₨ 0.00</p>
+                            </div>
+                            <p class="text-[10px] text-gray-400">Shipping rates, duties, and promotional discounts applied during simulated checkout.</p>
+                            <div class="space-y-2">
+                                <button onclick="openCheckoutModal()" class="w-full py-3.5 bg-gradient-to-r from-gold-600 to-gold-500 hover:from-gold-500 hover:to-gold-400 text-navy-900 font-extrabold text-xs uppercase tracking-widest rounded-lg transition-all text-center">
+                                    Proceed To Checkout
+                                </button>
+                                <button onclick="toggleCartDrawer()" class="w-full py-2.5 bg-transparent text-gray-400 hover:text-white text-xs font-semibold text-center transition-all">
+                                    Continue Shopping
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Retail Checkout Modal -->
+    <div id="checkout-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm hidden">
+        <div class="bg-navy-950 rounded-2xl border border-gold-500/30 max-w-lg w-full overflow-hidden shadow-2xl relative">
+            <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gold-500 transition-colors">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <div class="px-6 py-6 border-b border-gold-500/15">
+                <h3 class="font-display text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-lock text-gold-500"></i> Secure Checkout
+                </h3>
+                <p class="text-xs text-gray-400 mt-1">Please enter your delivery and payment details to finish placing your order.</p>
+            </div>
+            
+            <form id="checkout-form" onsubmit="handleCheckoutSubmit(event)" class="p-6 space-y-4 max-h-[70vh] overflow-y-auto">
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-300 uppercase mb-1">Customer Full Name</label>
+                    <input type="text" id="chk-name" required placeholder="John Doe" 
+                           class="w-full bg-navy-900 border border-gold-500/20 rounded-lg p-2.5 text-xs text-white placeholder-gray-500 focus:border-gold-500 focus:outline-none">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-[10px] font-bold text-gray-300 uppercase mb-1">WhatsApp / Phone</label>
+                        <input type="tel" id="chk-phone" required placeholder="+92 3XXXXXXXXX" 
+                               class="w-full bg-navy-900 border border-gold-500/20 rounded-lg p-2.5 text-xs text-white placeholder-gray-500 focus:border-gold-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold text-gray-300 uppercase mb-1">Email Address</label>
+                        <input type="email" id="chk-email" required placeholder="name@email.com" 
+                               class="w-full bg-navy-900 border border-gold-500/20 rounded-lg p-2.5 text-xs text-white placeholder-gray-500 focus:border-gold-500 focus:outline-none">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-300 uppercase mb-1">Complete Delivery Address</label>
+                    <input type="text" id="chk-address" required placeholder="House#, Street#, Area, City" 
+                           class="w-full bg-navy-900 border border-gold-500/20 rounded-lg p-2.5 text-xs text-white placeholder-gray-500 focus:border-gold-500 focus:outline-none">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-[10px] font-bold text-gray-300 uppercase mb-1">City</label>
+                        <input type="text" id="chk-city" required placeholder="Lahore / Karachi" 
+                               class="w-full bg-navy-900 border border-gold-500/20 rounded-lg p-2.5 text-xs text-white placeholder-gray-500 focus:border-gold-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold text-gray-300 uppercase mb-1">Country</label>
+                        <input type="text" id="chk-country" required value="Pakistan" 
+                               class="w-full bg-navy-900 border border-gold-500/20 rounded-lg p-2.5 text-xs text-white placeholder-gray-500 focus:border-gold-500 focus:outline-none">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-300 uppercase mb-2">Payment Method</label>
+                    <div class="grid grid-cols-3 gap-3">
+                        <label class="flex flex-col items-center justify-center p-3 bg-navy-900 rounded-lg border border-gold-500/30 cursor-pointer hover:border-gold-500 text-center">
+                            <input type="radio" name="checkout-payment" value="COD" checked class="text-gold-500 mb-1 focus:ring-0">
+                            <span class="text-[10px] font-bold text-white uppercase">COD</span>
+                            <span class="text-[8px] text-gray-400">Cash on Delivery</span>
+                        </label>
+                        <label class="flex flex-col items-center justify-center p-3 bg-navy-900 rounded-lg border border-gold-500/10 cursor-pointer hover:border-gold-500 text-center">
+                            <input type="radio" name="checkout-payment" value="Bank" class="text-gold-500 mb-1 focus:ring-0">
+                            <span class="text-[10px] font-bold text-white uppercase">Bank</span>
+                            <span class="text-[8px] text-gray-400">Direct Wire Transfer</span>
+                        </label>
+                        <label class="flex flex-col items-center justify-center p-3 bg-navy-900 rounded-lg border border-gold-500/10 cursor-pointer hover:border-gold-500 text-center">
+                            <input type="radio" name="checkout-payment" value="Card" class="text-gold-500 mb-1 focus:ring-0">
+                            <span class="text-[10px] font-bold text-white uppercase">Visa/Master</span>
+                            <span class="text-[8px] text-gray-400">Secure Debit Card</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Billing Summary box inside form -->
+                <div class="bg-navy-900 rounded-lg p-4 border border-gold-500/10">
+                    <div class="flex justify-between items-center text-xs">
+                        <span class="text-gray-400">Subtotal</span>
+                        <span id="chk-sum-subtotal" class="text-white font-semibold">₨ 0.00</span>
+                    </div>
+                    <div class="flex justify-between items-center text-xs mt-1.5">
+                        <span class="text-gray-400">Delivery Charges</span>
+                        <span class="text-green-500 font-semibold uppercase text-[10px]">FREE</span>
+                    </div>
+                    <hr class="border-navy-800 my-2">
+                    <div class="flex justify-between items-center text-sm">
+                        <span class="text-gold-400 font-bold">Payable Total</span>
+                        <span id="chk-sum-total" class="text-gold-500 font-extrabold text-base">₨ 0.00</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full py-4 bg-gradient-to-r from-gold-600 to-gold-500 hover:from-gold-500 hover:to-gold-400 text-navy-900 font-extrabold text-xs uppercase tracking-widest rounded-lg transition-all shadow-md mt-2">
+                    <i class="fa-solid fa-check-double mr-2"></i> Confirm & Process Order
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modern Custom Alert Notification Drawer / Toast -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 bg-navy-950 border-2 border-gold-500/50 rounded-xl p-4 shadow-2xl flex items-start gap-3 max-w-sm transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <div id="toast-icon" class="text-gold-500 text-xl pt-0.5"><i class="fa-solid fa-circle-check"></i></div>
+        <div>
+            <h4 id="toast-title" class="font-display font-bold text-xs text-white uppercase tracking-wider">Success</h4>
+            <p id="toast-msg" class="text-gray-300 text-xs mt-1">Product added successfully to your shopping cart.</p>
+        </div>
+    </div>
+
+    <!-- Contact & Direct Inquiry Section -->
+    <section id="contact-us" class="py-20 bg-navy-950 border-t border-gold-500/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Location details & contact credentials -->
+                <div class="space-y-6">
+                    <span class="font-display text-xs font-bold tracking-[0.2em] text-gold-500 uppercase">Connect with Us</span>
+                    <h2 class="font-display text-3xl font-extrabold text-white">Global Sales Headquarters</h2>
+                    <p class="text-gray-400 text-sm">
+                        Suraiya International welcomes customized corporate requests, bulk sportswear custom developments, and international wholesale inquiries. Direct contact coordinates are mentioned below:
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4">
+                            <span class="text-gold-500 text-lg mt-0.5"><i class="fa-solid fa-location-dot"></i></span>
+                            <div>
+                                <h4 class="text-white text-xs font-bold uppercase">Manufacturing Unit Address</h4>
+                                <p class="text-gray-400 text-xs mt-1">Plot 45-B, Small Industrial Estate No. 2, Gujranwala, Punjab, Pakistan</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <span class="text-gold-500 text-lg mt-0.5"><i class="fa-solid fa-envelope"></i></span>
+                            <div>
+                                <h4 class="text-white text-xs font-bold uppercase">Official Mailbox</h4>
+                                <p class="text-gray-400 text-xs mt-1">export@suraiyainternational.com / wholesale@suraiyainternational.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <span class="text-gold-500 text-lg mt-0.5"><i class="fa-brands fa-whatsapp"></i></span>
+                            <div>
+                                <h4 class="text-white text-xs font-bold uppercase">Global WhatsApp Hotlines</h4>
+                                <p class="text-gray-400 text-xs mt-1">+92 300 1234567 (Wholesale Operations)<br>+92 321 7654321 (Retail & Logistics)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Simple feedback form -->
+                <div class="bg-navy-900 rounded-2xl border border-gold-500/15 p-6 sm:p-8">
+                    <h3 class="font-display text-lg font-bold text-white mb-2">Leave a Direct Message</h3>
+                    <p class="text-gray-400 text-xs mb-6">Have any simple query about sizes, delivery timelines, or fabric feel? Type away!</p>
+                    <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+                        <div>
+                            <input type="text" required placeholder="Full Name" class="w-full bg-navy-950 border border-gold-500/20 rounded-lg p-3 text-xs text-white placeholder-gray-500 focus:border-gold-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <input type="email" required placeholder="Email Address" class="w-full bg-navy-950 border border-gold-500/20 rounded-lg p-3 text-xs text-white placeholder-gray-500 focus:border-gold-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <textarea required rows="4" placeholder="Your Detailed Message" class="w-full bg-navy-950 border border-gold-500/20 rounded-lg p-3 text-xs text-white placeholder-gray-500 focus:border-gold-500 focus:outline-none"></textarea>
+                        </div>
+                        <button type="submit" class="px-6 py-3 bg-gradient-to-r from-gold-600 to-gold-500 hover:from-gold-500 hover:to-gold-400 text-navy-900 font-extrabold text-xs uppercase tracking-wider rounded-lg transition-all shadow-md">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Footer -->
+    <footer class="bg-navy-950 border-t border-gold-500/10 py-12 text-center text-xs text-gray-500 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+            <!-- Footer Branding -->
+            <div class="flex flex-col items-center">
+                <span class="font-display text-xl font-extrabold tracking-wider text-gold-500">SURAIYA INTERNATIONAL</span>
+                <span class="text-[8px] font-bold tracking-[0.38em] text-white">SPORTSWEAR MANUFACTURE & EXPORTS</span>
+            </div>
+
+            <!-- Footer Navigation links -->
+            <div class="flex justify-center flex-wrap gap-6 text-gray-400">
+                <a href="#home" class="hover:text-gold-500">Home</a>
+                <a href="#retail-shop" class="hover:text-gold-500">Retail Catalog</a>
+                <a href="#bulk-section" class="hover:text-gold-500">Bulk Calculator</a>
+                <a href="#about-us" class="hover:text-gold-500">Our Heritage</a>
+                <a href="#contact-us" class="hover:text-gold-500">Contact Support</a>
+            </div>
+
+            <p class="max-w-md mx-auto text-[11px]">
+                © 2026 Suraiya International Ltd. All Rights Reserved. Custom manufactured high performance athletic sportswear catalog. Powered for global delivery networks.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Global variables state management
+        let currency = "PKR";
+        let cart = [];
+
+        // Exchange rate (Simulated constant)
+        const exchangeRate = 275; // 1 USD = 275 PKR
+
+        // Standard Retail Products Database
+        const productsDb = [
+            {
+                id: 1,
+                name: "Apex Performance Gold-Trim Tracksuit",
+                category: "Activewear",
+                pricePKR: 22000,
+                priceUSD: 79.99,
+                image: "https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=600&auto=format&fit=crop",
+                rating: 5,
+                sizes: ["S", "M", "L", "XL"],
+                desc: "Export-grade stretch material with detailed gold-embroidered aesthetics."
+            },
+            {
+                id: 2,
+                name: "Pro-Breathe Laser-Cut Athletic Tee",
+                category: "Activewear",
+                pricePKR: 8000,
+                priceUSD: 29.99,
+                image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=600&auto=format&fit=crop",
+                rating: 4,
+                sizes: ["S", "M", "L"],
+                desc: "Super-wicking lightweight athletic mesh fabric keeping athletes cool under high intensity."
+            },
+            {
+                id: 3,
+                name: "Gold-Line Compression Active Tights",
+                category: "Compression",
+                pricePKR: 11000,
+                priceUSD: 39.99,
+                image: "https://images.unsplash.com/photo-1539185441755-769473a23570?q=80&w=600&auto=format&fit=crop",
+                rating: 5,
+                sizes: ["M", "L", "XL"],
+                desc: "Full-stretch specialized compression stitching boosting muscular endurance."
+            },
+            {
+                id: 4,
+                name: "Elite Training Thermal Sport Hoodie",
+                category: "Outerwear",
+                pricePKR: 16500,
+                priceUSD: 59.99,
+                image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=600&auto=format&fit=crop",
+                rating: 5,
+                sizes: ["S", "M", "L", "XL", "XXL"],
+                desc: "Insulated performance soft-fleece fabric optimal for outdoor training sessions."
+            },
+            {
+                id: 5,
+                name: "Aero-Dry Lightweight Gym Shorts",
+                category: "Activewear",
+                pricePKR: 7000,
+                priceUSD: 24.99,
+                image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=600&auto=format&fit=crop",
+                rating: 4,
+                sizes: ["S", "M", "L"],
+                desc: "High flexibility side-vented panels allowing absolute stride freedom."
+            },
+            {
+                id: 6,
+                name: "Suraiya Storm Premium Windbreaker",
+                category: "Outerwear",
+                pricePKR: 25000,
+                priceUSD: 89.99,
+                image: "https://images.unsplash.com/photo-1548883354-7622d03aca27?q=80&w=600&auto=format&fit=crop",
+                rating: 5,
+                sizes: ["M", "L", "XL"],
+                desc: "Waterproof outer shell lining with heavy utility internal safety storage pockets."
+            }
+        ];
+
+        // Format Currency Utility Helper
+        function formatVal(amount) {
+            if (currency === "PKR") {
+                return `₨ ${Math.round(amount).toLocaleString()}`;
+            } else {
+                return `$${parseFloat(amount).toFixed(2)}`;
+            }
+        }
+
+        // Get relative price according to selected currency
+        function getPrice(product) {
+            return currency === "PKR" ? product.pricePKR : product.priceUSD;
+        }
+
+        // Initialize App
+        window.onload = function() {
+            renderProducts(productsDb);
+            calculateBulkQuote();
+            setupSearch();
+        };
+
+        // Render product grids
+        function renderProducts(productsList) {
+            const grid = document.getElementById("product-grid");
+            grid.innerHTML = "";
+
+            if (productsList.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-12">
+                        <i class="fa-solid fa-magnifying-glass text-4xl text-gray-500 mb-3"></i>
+                        <p class="text-gray-400">No premium gear matches your criteria.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            productsList.forEach(prod => {
+                const priceValue = getPrice(prod);
+                const stars = Array(5).fill("").map((_, i) => 
+                    i < prod.rating ? '<i class="fa-solid fa-star text-gold-500"></i>' : '<i class="fa-regular fa-star text-gray-600"></i>'
+                ).join("");
+
+                // Generate sizes markup
+                const sizesMarkup = prod.sizes.map(size => `
+                    <label class="size-label cursor-pointer">
+                        <input type="radio" name="size-select-${prod.id}" value="${size}" class="hidden peer" ${prod.sizes[0] === size ? 'checked' : ''}>
+                        <span class="text-[10px] font-bold px-2.5 py-1 bg-navy-800 border border-gold-500/20 rounded text-gray-300 peer-checked:bg-gold-500 peer-checked:text-navy-900 peer-checked:border-gold-500 transition-all select-none">${size}</span>
+                    </label>
+                `).join("");
+
+                const cardHTML = `
+                    <div class="bg-navy-950 rounded-2xl overflow-hidden border border-gold-500/10 hover:border-gold-500/40 transition-all duration-300 flex flex-col group h-full">
+                        <!-- Product Visual -->
+                        <div class="relative overflow-hidden aspect-square bg-navy-900 flex items-center justify-center">
+                            <img src="${prod.image}" alt="${prod.name}" onerror="this.src='https://placehold.co/400x400/0B192C/D4AF37?text=${encodeURIComponent(prod.name)}'" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 left-4 bg-navy-950/90 text-gold-400 border border-gold-500/30 text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">${prod.category}</span>
+                        </div>
+                        
+                        <!-- Product Text Details -->
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-1.5 mb-2">
+                                    ${stars}
+                                    <span class="text-[10px] text-gray-400 ml-1">Reviews (4.9+)</span>
+                                </div>
+                                <h3 class="font-display font-bold text-white text-base leading-tight group-hover:text-gold-400 transition-colors">${prod.name}</h3>
+                                <p class="text-gray-400 text-xs mt-2 line-clamp-2">${prod.desc}</p>
+                                
+                                <!-- Sizing list -->
+                                <div class="mt-4">
+                                    <span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider block mb-2">Select Size:</span>
+                                    <div class="flex flex-wrap gap-1.5">
+                                        ${sizesMarkup}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Bottom Buy/Cart Interface -->
+                            <div class="mt-6 pt-4 border-t border-navy-800 flex items-center justify-between">
+                                <div class="flex flex-col">
+                                    <span class="text-[10px] text-gray-500 uppercase tracking-widest leading-none">Price Each</span>
+                                    <span class="text-lg font-extrabold text-gold-500 font-display mt-1">${formatVal(priceValue)}</span>
+                                </div>
+                                <button onclick="addProductToCart(${prod.id})" class="px-4 py-2.5 bg-gold-500 hover:bg-gold-600 text-navy-900 font-bold text-xs uppercase tracking-wide rounded-lg transition-transform active:scale-95 flex items-center gap-1.5 shadow-md">
+                                    <i class="fa-solid fa-cart-plus"></i> Add To Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.insertAdjacentHTML("beforeend", cardHTML);
+            });
+        }
+
+        // Change Currency Trigger
+        function changeCurrency() {
+            currency = document.getElementById("currency-select").value;
+            // Re-render product catalogs
+            renderProducts(productsDb);
+            // Recompute any calculated quotes
+            calculateBulkQuote();
+            // Re-draw inside shopping carts
+            updateCartDrawerUI();
+        }
+
+        // Filter categories actions
+        function filterCategory(categoryName) {
+            // Update active tabs styles
+            document.querySelectorAll(".category-tab").forEach(btn => {
+                btn.classList.remove("active", "bg-gold-500", "text-navy-900");
+                btn.classList.add("bg-navy-800", "text-gray-300");
+            });
+
+            const activeBtn = event.currentTarget;
+            activeBtn.classList.remove("bg-navy-800", "text-gray-300");
+            activeBtn.classList.add("bg-gold-500", "text-navy-900", "active");
+
+            if (categoryName === "All") {
+                renderProducts(productsDb);
+            } else {
+                const filtered = productsDb.filter(p => p.category === categoryName);
+                renderProducts(filtered);
+            }
+        }
+
+        // Search engine filter input
+        function setupSearch() {
+            const searchInput = document.getElementById("product-search");
+            const mobileSearchInput = document.getElementById("mobile-product-search");
+
+            const filterSearch = (event) => {
+                const query = event.target.value.toLowerCase().trim();
+                const filtered = productsDb.filter(prod => 
+                    prod.name.toLowerCase().includes(query) || 
+                    prod.category.toLowerCase().includes(query) || 
+                    prod.desc.toLowerCase().includes(query)
+                );
+                renderProducts(filtered);
+            };
+
+            searchInput.addEventListener("input", filterSearch);
+            mobileSearchInput.addEventListener("input", filterSearch);
+        }
+
+        // Add item to shopping cart state
+        function addProductToCart(productId) {
+            const product = productsDb.find(p => p.id === productId);
+            if (!product) return;
+
+            // Find selected size
+            const sizeRadio = document.querySelector(`input[name="size-select-${productId}"]:checked`);
+            const selectedSize = sizeRadio ? sizeRadio.value : "M";
+
+            // Check if item of same ID and same size already exists in bag
+            const existingItem = cart.find(item => item.id === productId && item.size === selectedSize);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    size: selectedSize,
+                    pricePKR: product.pricePKR,
+                    priceUSD: product.priceUSD,
+                    image: product.image,
+                    quantity: 1
+                });
+            }
+
+            showToast("Success", `${product.name} (Size ${selectedSize}) has been added to your shopping bag.`);
+            updateCartDrawerUI();
+        }
+
+        // Toggle Drawer view
+        function toggleCartDrawer() {
+            const drawer = document.getElementById("cart-drawer");
+            drawer.classList.toggle("hidden");
+        }
+
+        // Toggle mobile menu view
+        function toggleMobileMenu() {
+            const menu = document.getElementById("mobile-menu");
+            const icon = document.getElementById("mobile-menu-icon");
+            menu.classList.toggle("hidden");
+            if (menu.classList.contains("hidden")) {
+                icon.className = "fa-solid fa-bars text-xl";
+            } else {
+                icon.className = "fa-solid fa-xmark text-xl";
+            }
+        }
+
+        // Update Shopping Cart drawer UI
+        function updateCartDrawerUI() {
+            const cartItemsContainer = document.getElementById("cart-items-container");
+            const cartFooter = document.getElementById("cart-footer");
+            const emptyCartState = document.getElementById("empty-cart-state");
+            const cartCountBadge = document.getElementById("cart-count-badge");
+
+            // Compute total quantities of items inside cart
+            const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+            // Update badge quantities count visibility
+            if (totalQty > 0) {
+                cartCountBadge.classList.remove("hidden");
+                cartCountBadge.innerText = totalQty;
+                cartFooter.classList.remove("hidden");
+                emptyCartState.classList.add("hidden");
+            } else {
+                cartCountBadge.classList.add("hidden");
+                cartFooter.classList.add("hidden");
+                emptyCartState.classList.remove("hidden");
+            }
+
+            // Remove all custom entries
+            const existingCartEntries = cartItemsContainer.querySelectorAll('.cart-item-entry');
+            existingCartEntries.forEach(entry => entry.remove());
+
+            // Add dynamic entries to list
+            let totalAmount = 0;
+
+            cart.forEach((item, index) => {
+                const itemPrice = currency === "PKR" ? item.pricePKR : item.priceUSD;
+                const finalItemCostTotal = itemPrice * item.quantity;
+                totalAmount += finalItemCostTotal;
+
+                const itemHTML = `
+                    <div class="cart-item-entry flex items-center gap-4 bg-navy-900 p-3 rounded-lg border border-gold-500/10">
+                        <img src="${item.image}" alt="${item.name}" onerror="this.src='https://placehold.co/100x100/0B192C/D4AF37?text=gear'" class="w-12 h-12 rounded object-cover border border-gold-500/20">
+                        <div class="flex-1">
+                            <h4 class="text-xs font-bold text-white line-clamp-1 leading-tight">${item.name}</h4>
+                            <p class="text-[10px] text-gold-400 font-semibold mt-1">Size: ${item.size}</p>
+                            <div class="flex items-center justify-between mt-2">
+                                <!-- Counter buttons -->
+                                <div class="flex items-center gap-2 border border-gold-500/20 rounded bg-navy-950 px-1.5 py-0.5">
+                                    <button onclick="changeCartItemQty(${index}, -1)" class="text-gray-400 hover:text-white text-[10px] px-1 focus:outline-none"><i class="fa-solid fa-minus"></i></button>
+                                    <span class="text-xs text-white font-bold px-1">${item.quantity}</span>
+                                    <button onclick="changeCartItemQty(${index}, 1)" class="text-gray-400 hover:text-white text-[10px] px-1 focus:outline-none"><i class="fa-solid fa-plus"></i></button>
+                                </div>
+                                <span class="text-xs font-extrabold text-gold-500 font-display">${formatVal(finalItemCostTotal)}</span>
+                            </div>
+                        </div>
+                        <button onclick="removeCartItem(${index})" class="text-gray-500 hover:text-red-500 transition-colors p-1.5">
+                            <i class="fa-solid fa-trash text-xs"></i>
+                        </button>
+                    </div>
+                `;
+                cartItemsContainer.insertAdjacentHTML("beforeend", itemHTML);
+            });
+
+            // Set final total sums calculated
+            document.getElementById("cart-subtotal").innerText = formatVal(totalAmount);
+            document.getElementById("chk-sum-subtotal").innerText = formatVal(totalAmount);
+            document.getElementById("chk-sum-total").innerText = formatVal(totalAmount);
+        }
+
+        // Change individual item qty directly in checkout bag
+        function changeCartItemQty(index, delta) {
+            cart[index].quantity += delta;
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartDrawerUI();
+        }
+
+        // Completely remove cart items
+        function removeCartItem(index) {
+            cart.splice(index, 1);
+            updateCartDrawerUI();
+        }
+
+        // Handle Bulk Calculator configuration logic
+        function updateBulkQtyDisplay(val) {
+            document.getElementById("bulk-quantity-display").innerText = `${val} Pcs`;
+            calculateBulkQuote();
+        }
+
+        // Compute Bulk Price and Discounts dynamically based on quantities ordered
+        function calculateBulkQuote() {
+            const targetProductKey = document.getElementById("bulk-calc-product").value;
+            const quantityVal = parseInt(document.getElementById("bulk-calc-qty").value);
+            const isLogoSelected = document.querySelector('input[name="bulk-logo"]:checked').value === "yes";
+
+            // Define wholesale raw base prices in PKR
+            let basePricePKR = 22000;
+            switch(targetProductKey) {
+                case "tracksuit": basePricePKR = 22000; break;
+                case "tee": basePricePKR = 8000; break;
+                case "compression": basePricePKR = 11000; break;
+                case "hoodie": basePricePKR = 16500; break;
+                case "shorts": basePricePKR = 7000; break;
+                case "windbreaker": basePricePKR = 25000; break;
+            }
+
+            // Determine discount percentages tier dynamically
+            let discountPercent = 0;
+            if (quantityVal >= 20 && quantityVal <= 100) {
+                discountPercent = 15; // 15% drop
+            } else if (quantityVal >= 101 && quantityVal <= 499) {
+                discountPercent = 25; // 25% drop
+            } else if (quantityVal >= 500) {
+                discountPercent = 35; // Massive 35% discount
+            }
+
+            // Custom logo adds an initial 5% manufacturing charge to basic costs
+            let totalUnitCost = basePricePKR;
+            if (isLogoSelected) {
+                totalUnitCost = basePricePKR * 1.05;
+            }
+
+            // Retail base total calculations
+            const retailBaseTotal = basePricePKR * quantityVal;
+
+            // Apply calculated discount rates
+            const finalUnitCost = totalUnitCost * (1 - (discountPercent / 100));
+            const wholesaleGrandTotal = finalUnitCost * quantityVal;
+
+            // Convert to respective selected currency rates
+            let retailPriceConverted = retailBaseTotal;
+            let finalUnitConverted = finalUnitCost;
+            let grandTotalConverted = wholesaleGrandTotal;
+
+            if (currency === "USD") {
+                retailPriceConverted = retailBaseTotal / exchangeRate;
+                finalUnitConverted = finalUnitCost / exchangeRate;
+                grandTotalConverted = wholesaleGrandTotal / exchangeRate;
+            }
+
+            // Write results visually onto screen DOM
+            document.getElementById("calc-retail-price").innerText = formatVal(retailPriceConverted);
+            document.getElementById("calc-discount-badge").innerText = `${discountPercent}% OFF`;
+            document.getElementById("calc-per-item").innerText = formatVal(finalUnitConverted);
+            document.getElementById("calc-logo-cost").innerText = isLogoSelected ? "+5% Surcharge" : "None";
+            document.getElementById("calc-grand-total").innerText = formatVal(grandTotalConverted);
+        }
+
+        // Apply dynamic quote configs over to checkout form
+        function applyBulkCalcToForm() {
+            const productSelect = document.getElementById("bulk-calc-product");
+            const selectedText = productSelect.options[productSelect.selectedIndex].text.split("(")[0].trim();
+            const quantityVal = document.getElementById("bulk-calc-qty").value;
+
+            document.getElementById("bulk-target-product").value = selectedText;
+            document.getElementById("bulk-target-qty").value = quantityVal;
+
+            // Scroll down directly to submit input field
+            document.getElementById("bulk-company").focus();
+            showToast("Form Updated", "Calculator configurations have been loaded into the inquiry submission form.");
+        }
+
+        // Form handler submission for corporate inquiries
+        function handleBulkFormSubmit(event) {
+            event.preventDefault();
+            const company = document.getElementById("bulk-company").value;
+            const name = document.getElementById("bulk-name").value;
+            const phone = document.getElementById("bulk-phone").value;
+            const targetProduct = document.getElementById("bulk-target-product").value || "Premium Apparel Line";
+            const targetQty = document.getElementById("bulk-target-qty").value;
+
+            // Beautiful custom feedback instead of alerts
+            showSuccessModal(
+                "Inquiry Submitted!",
+                `Assalam-o-Alaikum ${name}, your corporate bulk order request for <b>${targetQty} units of ${targetProduct}</b> under <b>${company}</b> has been received successfully.<br><br>Our Wholesale Division will contact you within 2 hours on WhatsApp (<b>${phone}</b>) to finalize the design mockup proofs!`
+            );
+
+            // Reset form fields
+            document.getElementById("bulk-inquiry-form").reset();
+        }
+
+        // Handle retail single-purchases standard direct checkouts
+        function openCheckoutModal() {
+            if (cart.length === 0) return;
+            toggleCartDrawer();
+            document.getElementById("checkout-modal").classList.remove("hidden");
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById("checkout-modal").classList.add("hidden");
+        }
+
+        function handleCheckoutSubmit(event) {
+            event.preventDefault();
+            const customerName = document.getElementById("chk-name").value;
+            const customerPhone = document.getElementById("chk-phone").value;
+            const paymentMethod = document.querySelector('input[name="checkout-payment"]:checked').value;
+
+            closeCheckoutModal();
+
+            // Clear Cart after success
+            cart = [];
+            updateCartDrawerUI();
+
+            showSuccessModal(
+                "Order Placed Successfully!",
+                `Shukriya <b>${customerName}</b>, your retail sportswear order has been registered under <b>Order ID #SI-${Math.floor(100000 + Math.random() * 900000)}</b>.<br><br>Method chosen: <b>${paymentMethod}</b>. A confirmation message with tracking code has been dispatched to <b>${customerPhone}</b>.`
+            );
+        }
+
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            showSuccessModal(
+                "Message Sent!",
+                "Thank you for contacting Suraiya International. Our representatives will evaluate your athletic wear query and contact you within 24 business hours."
+            );
+            event.target.reset();
+        }
+
+        // Custom Beautiful Success Feedback Modal builder
+        function showSuccessModal(title, bodyHTML) {
+            // Check if there is already a modal
+            const existing = document.getElementById("success-modal-overlay");
+            if (existing) existing.remove();
+
+            const modalHTML = `
+                <div id="success-modal-overlay" class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
+                    <div class="bg-navy-950 border-2 border-gold-500 rounded-2xl p-6 sm:p-8 max-w-md w-full text-center space-y-6 animate-bounce-short">
+                        <div class="w-16 h-16 bg-gold-500/10 text-gold-500 border border-gold-500 rounded-full flex items-center justify-center text-3xl mx-auto">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-display text-xl font-extrabold text-white tracking-wide uppercase">${title}</h3>
+                            <p class="text-gray-300 text-xs sm:text-sm mt-4 leading-relaxed">${bodyHTML}</p>
+                        </div>
+                        <button onclick="document.getElementById('success-modal-overlay').remove()" class="px-8 py-3 bg-gradient-to-r from-gold-600 to-gold-500 text-navy-900 font-bold text-xs uppercase tracking-widest rounded-lg transition-transform active:scale-95">
+                            Got It, Thanks!
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML("beforeend", modalHTML);
+        }
+
+        // Custom beautiful toast notifications (Instead of alert)
+        function showToast(title, message) {
+            const toast = document.getElementById("toast");
+            const tTitle = document.getElementById("toast-title");
+            const tMsg = document.getElementById("toast-msg");
+
+            tTitle.innerText = title;
+            tMsg.innerText = message;
+
+            // Slide in animation
+            toast.classList.remove("translate-y-20", "opacity-0", "pointer-events-none");
+            toast.classList.add("translate-y-0", "opacity-100");
+
+            // Auto dismiss after 3.5 seconds
+            setTimeout(() => {
+                toast.classList.remove("translate-y-0", "opacity-100");
+                toast.classList.add("translate-y-20", "opacity-0", "pointer-events-none");
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
